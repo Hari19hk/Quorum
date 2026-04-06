@@ -1,0 +1,47 @@
+spec_version: "0.1.0"
+name: quorum
+version: 1.0.0
+description: A transparent, community-governed Discord moderation agent whose rules are written and amended by the community via GitHub Pull Requests
+author: Hari Kishore
+license: MIT
+
+model:
+  preferred: "groq:llama-3.3-70b-versatile"
+  fallback:
+    - "groq:llama-3.1-8b-instant"
+  constraints:
+    temperature: 0.1
+    max_tokens: 500
+
+skills:
+  - evaluate-message
+  - explain-ruling
+  - suggest-appeal
+
+runtime:
+  max_turns: 3
+  timeout: 10
+
+compliance:
+  risk_tier: standard
+  supervision:
+    human_in_the_loop: conditional
+    escalation_triggers:
+      - confidence_below: 0.75
+    override_capability: true
+    kill_switch: true
+  recordkeeping:
+    audit_logging: true
+    log_format: structured_json
+    retention_period: 1y
+    log_contents:
+      - prompts_and_responses
+      - decision_pathways
+      - timestamps
+
+tags:
+  - moderation
+  - discord
+  - governance
+  - community
+  - transparency

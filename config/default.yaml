@@ -1,0 +1,7 @@
+log_level: info
+compliance_mode: true
+audit_logging: true
+escalation_channel: mod-escalations
+governance_channel: governance
+rules_repo: https://github.com/Hari19hk/quorum
+hot_reload: true

@@ -1,0 +1,12 @@
+hooks:
+  on_session_start:
+    - script: scripts/validate-rules.sh
+      description: Run gitagent validate before any moderation session — catch malformed RULES.md before it causes bad rulings
+
+  pre_tool_use:
+    - script: scripts/audit-tool-call.sh
+      description: Log every tool invocation with timestamp and session ID
+
+  on_error:
+    - script: scripts/escalate-error.sh
+      description: Alert human moderators immediately on any agent failure — never leave a message unreviewed due to an error

@@ -1,0 +1,17 @@
+layers:
+  - name: working
+    path: runtime/moderation-log.md
+    max_lines: 500
+    format: markdown
+  - name: changelog
+    path: runtime/rule-changelog.md
+    max_lines: 200
+    format: markdown
+
+update_triggers:
+  - on_moderation_action
+  - on_rule_amendment
+
+archive_policy:
+  max_entries: 10000
+  compress_after: 30d

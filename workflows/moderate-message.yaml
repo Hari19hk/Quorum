@@ -1,0 +1,79 @@
+name: moderate-message
+description: Deterministic moderation pipeline for every incoming Discord message
+version: 1.0.0
+
+triggers:
+  - message_received
+
+inputs:
+  - name: message_content
+    type: string
+    required: true
+  - name: author_id
+    type: string
+    required: true
+  - name: channel_id
+    type: string
+    required: true
+  - name: guild_id
+    type: string
+    required: true
+
+steps:
+  evaluate:
+    skill: evaluate-message
+    inputs:
+      message: ${{ trigger.message_content }}
+      author: ${{ trigger.author_id }}
+      channel: ${{ trigger.channel_id }}
+    outputs:
+      - verdict
+      - rule
+      - reason
+      - commit
+
+  route:
+    depends_on: [evaluate]
+    conditions:
+      - if: ${{ steps.evaluate.outputs.verdict == 'DELETE' }}
+        then: execute_delete
+      - if: ${{ steps.evaluate.outputs.verdict == 'ESCALATE' }}
+        then: execute_escalate
+      - if: ${{ steps.evaluate.outputs.verdict == 'APPROVE' }}
+        then: end
+
+  execute_delete:
+    depends_on: [route]
+    tool: discord-delete
+    inputs:
+      channel_id: ${{ trigger.channel_id }}
+      author_id: ${{ trigger.author_id }}
+      rule: ${{ steps.evaluate.outputs.rule }}
+      reason: ${{ steps.evaluate.outputs.reason }}
+      commit: ${{ steps.evaluate.outputs.commit }}
+
+  execute_escalate:
+    depends_on: [route]
+    tool: discord-escalate
+    inputs:
+      channel_id: ${{ trigger.channel_id }}
+      author_id: ${{ trigger.author_id }}
+      message: ${{ trigger.message_content }}
+      reason: ${{ steps.evaluate.outputs.reason }}
+
+  log:
+    depends_on: [execute_delete, execute_escalate]
+    skill: audit-log
+    inputs:
+      author_id: ${{ trigger.author_id }}
+      channel_id: ${{ trigger.channel_id }}
+      message: ${{ trigger.message_content }}
+      verdict: ${{ steps.evaluate.outputs.verdict }}
+      rule: ${{ steps.evaluate.outputs.rule }}
+      reason: ${{ steps.evaluate.outputs.reason }}
+      commit: ${{ steps.evaluate.outputs.commit }}
+
+error_handling:
+  on_failure: escalate
+  escalate_to: human-moderators
+  notify_channel: mod-escalations
