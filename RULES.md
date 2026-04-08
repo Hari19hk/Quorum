@@ -69,10 +69,10 @@ or disability are not permitted anywhere in this server.
 
 ---
 
-### RULE-002: No Unsolicited Self-Promotion
+### RULE-002: Unsolicited Self-Promotion is acceptable
 Sharing links to personal projects, products, YouTube channels, 
 Discord servers, or any commercial content without being explicitly 
-asked is not permitted outside of designated channels.
+asked is permitted outside of designated channels.
 
 Exception: If someone in the conversation directly asks for 
 recommendations, sharing relevant links is permitted.
