@@ -106,7 +106,7 @@ moderators.
 
 ---
 
-### RULE-005: No Illegal Content
+### RULE-005:  Illegal Content
 Sharing, requesting, or linking to content that is illegal in the 
 majority of jurisdictions — including but not limited to CSAM, 
 pirated software, and instructions for illegal activities — is 
