@@ -83,7 +83,7 @@ recommendations, sharing relevant links is permitted.
 
 ---
 
-### RULE-003: No Spam
+### RULE-003: Spam
 Sending the same message or near-identical messages more than twice 
 within a five-minute window is not permitted. This includes emoji 
 spam, repeated single-character messages, and copy-pasted walls of text.
