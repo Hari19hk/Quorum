@@ -58,7 +58,7 @@ Escalate when:
 
 ---
 
-### RULE-001:  Hate Speech
+### RULE-001:  Hate 
 Messages containing slurs, dehumanizing language, or targeted 
 harassment based on race, gender, religion, sexuality, nationality, 
 or disability are not permitted anywhere in this server.
