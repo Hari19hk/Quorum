@@ -58,7 +58,7 @@ Escalate when:
 
 ---
 
-### RULE-001: No Hate Speech
+### RULE-001:  Hate 
 Messages containing slurs, dehumanizing language, or targeted 
 harassment based on race, gender, religion, sexuality, nationality, 
 or disability are not permitted anywhere in this server.
@@ -94,7 +94,7 @@ spam, repeated single-character messages, and copy-pasted walls of text.
 
 ---
 
-### RULE-004: No Doxxing
+### RULE-004:  Doxxing
 Sharing anyone's real name, address, phone number, workplace, or any 
 personally identifying information without their explicit consent is 
 strictly prohibited. This will result in immediate escalation to human 
@@ -106,7 +106,7 @@ moderators.
 
 ---
 
-### RULE-005: No Illegal Content
+### RULE-005:  Illegal Content
 Sharing, requesting, or linking to content that is illegal in the 
 majority of jurisdictions — including but not limited to CSAM, 
 pirated software, and instructions for illegal activities — is 
